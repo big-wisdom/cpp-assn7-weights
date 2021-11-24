@@ -1,105 +1,127 @@
-#include<iostream>
+#include <iostream>
 
 namespace usu
 {
     template <typename Rep, typename W = std::ratio<1>>
     class Weight
     {
-        public:
-            Weight(Rep newCount) : number(newCount) {};
+      public:
+        Weight() :
+            number(0){};
 
-            W WeightRatio;
-            Rep number;
+        Weight(Rep newCount) :
+            number(newCount){};
 
-            Rep count()
-            {
-                return number;
-            }
+        W WeightRatio;
+        Rep number;
 
-            template <typename S>
-            Weight& operator+(S s)
-            {
-                Weight<double> newS(1000);
-                return newS;
-            }
+        Rep count()
+        {
+            return number;
+        }
 
-            template <typename S>
-            Weight& operator-(S s)
-            {
-                Weight<double> newS(1000);
-                return newS;
-            }
+        template <typename S>
+        S operator+(S s)
+        {
+            std::cout << s.number << std::endl;
+            decltype(s) w(s.number + number);
+            return w;
+        }
 
-            template <typename S>
-            Weight& operator=(S s)
-            {
-                Weight<double> newS(1000);
-                return newS;
-            }
+        template <typename S>
+        Weight operator-(S s)
+        {
+            std::cout << s.number << std::endl;
+            decltype(s) newS(1000);
+            return newS;
+        }
 
-            template <typename S>
-            Weight& operator*(S s)
-            {
-                Weight<double> newS(1000);
-                return newS;
-            }
+        template <typename S>
+        Weight operator=(S s)
+        {
+            std::cout << s.number << std::endl;
+            Weight<double> newS(1000);
+            return newS;
+        }
 
-            template <typename S>
-            bool operator==(const S& rhs)
-            {
-                return true;
-            }
+        template <typename S>
+        Weight operator*(S s)
+        {
+            decltype(s) newS(s * number);
+            return newS;
+        }
 
-            template <typename S>
-            bool operator<=(S s)
-            {
-                return true;
-            }
+        template <typename S>
+        bool operator==(S& rhs)
+        {
+            std::cout << rhs.number << std::endl;
+            return true;
+        }
 
-            template <typename S>
-            bool operator<(S s)
-            {
-                return true;
-            }
+        template <typename S>
+        bool operator<=(S s)
+        {
+            std::cout << s.number << std::endl;
+            return true;
+        }
 
-            template <typename S>
-            bool operator>=(S s)
-            {
-                return true;
-            }
+        template <typename S>
+        bool operator<(S s)
+        {
+            std::cout << s.number << std::endl;
+            return true;
+        }
 
-            template <typename S>
-            bool operator>(S s)
-            {
-                return true;
-            }
+        template <typename S>
+        bool operator>=(S s)
+        {
+            std::cout << s.number << std::endl;
+            return true;
+        }
 
-            template <typename S>
-            bool operator!=(S s)
-            {
-                return true;
-            }
+        template <typename S>
+        bool operator>(S s)
+        {
+            std::cout << s.number << std::endl;
+            return true;
+        }
+
+        template <typename S>
+        bool operator!=(S s)
+        {
+            std::cout << s.number << std::endl;
+            return true;
+        }
     };
 
-    template <typename T, typename W>
-    T weight_cast(W w)
+    template <typename ToWeight, typename W>
+    ToWeight weight_cast(W w)
     {
-        T t;
+        ToWeight t;
+        std::cout << w.number << std::endl;
         // math
         return t;
     }
 
-    using microgram = Weight<double , std::ratio<1, 1000>>;
-    using kilogram = Weight<double , std::ratio<1000, 1>>;
-    using gram = Weight<double , std::ratio<1, 1>>;
-    using ton = Weight<double , std::ratio<110231, 100000000000>>;
-    using ounce = Weight<double , std::ratio<35274, 1000000>>;
-    using pound = Weight<double , std::ratio<220462, 100000000>>;
+    using microgram = Weight<double, std::ratio<1, 1000>>;
+    using kilogram = Weight<double, std::ratio<1000, 1>>;
+    using gram = Weight<double, std::ratio<1, 1>>;
+    using ton = Weight<double, std::ratio<110231, 100000000000>>;
+    using ounce = Weight<double, std::ratio<35274, 1000000>>;
+    using pound = Weight<double, std::ratio<220462, 100000000>>;
 
-}
+} // namespace usu
 
 template <typename S>
 S operator*(double i, const S& s)
 {
+    std::cout << i << std::endl;
+    return s;
+}
+
+template <typename S>
+S operator==(S& i, const S& s)
+{
+    std::cout << i << std::endl;
     return s;
 }
