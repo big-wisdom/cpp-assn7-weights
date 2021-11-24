@@ -12,7 +12,7 @@ namespace usu
         Weight(Rep newCount) :
             number(newCount){};
 
-        W WeightRatio;
+        W weightRatio;
         Rep number;
 
         Rep count()
@@ -97,18 +97,26 @@ namespace usu
     template <typename ToWeight, typename W>
     ToWeight weight_cast(W w)
     {
+        // multiplier
         ToWeight t;
-        std::cout << w.number << std::endl;
-        // math
-        return t;
+
+        std::cout << "from " << w.weightRatio.num << ":" << w.weightRatio.den << " to " << t.weightRatio.num << ":" << t.weightRatio.den << std::endl;
+        std::cout << "in-top: " << w.weightRatio.num << std::endl;
+        std::cout << "in-bottom: " << w.weightRatio.den << std::endl;
+        std::cout << "out-top: " << t.weightRatio.num << std::endl;
+        std::cout << "out-bottom: " << t.weightRatio.den << std::endl
+                  << std::endl;
+
+        ToWeight newWeight(w.number * w.weightRatio.num * t.weightRatio.den / (w.weightRatio.den * t.weightRatio.num));
+        return newWeight;
     }
 
-    using microgram = Weight<double, std::ratio<1, 1000>>;
+    using microgram = Weight<double, std::ratio<1, 1000000>>;
     using kilogram = Weight<double, std::ratio<1000, 1>>;
     using gram = Weight<double, std::ratio<1, 1>>;
-    using ton = Weight<double, std::ratio<110231, 100000000000>>;
-    using ounce = Weight<double, std::ratio<35274, 1000000>>;
-    using pound = Weight<double, std::ratio<220462, 100000000>>;
+    using ton = Weight<double, std::ratio<100000000000, 110231>>;
+    using ounce = Weight<double, std::ratio<1000000, 35274>>;
+    using pound = Weight<double, std::ratio<100000000, 220462>>;
 
 } // namespace usu
 
