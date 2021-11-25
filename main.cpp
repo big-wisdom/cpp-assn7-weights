@@ -13,7 +13,6 @@ int main()
     usu::microgram mcg(1000000);
     usu::gram g = usu::weight_cast<usu::gram>(mcg);
     usu::pound lb = usu::weight_cast<usu::pound>(g);
-    // I'M THIS FAR ############################################################
     usu::ounce oz = usu::weight_cast<usu::ounce>(lb);
     usu::ton ton = usu::weight_cast<usu::ton>(lb);
 
@@ -44,6 +43,8 @@ int main()
     std::cout << "lbs        : " << somePounds.count() << std::endl;
     std::cout << "ounces     : " << ouncesFromPounds.count() << std::endl;
     std::cout << "tons       : " << tonsFromPounds.count() << std::endl;
+
+    // I'M THIS FAR ############################################################
 
     std::cout << std::endl
               << "--- Arithmetic Operator Overloading ---" << std::endl;

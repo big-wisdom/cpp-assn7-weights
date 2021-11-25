@@ -21,19 +21,17 @@ namespace usu
         }
 
         template <typename S>
-        S operator+(S s)
+        Weight operator+(S s)
         {
-            std::cout << s.number << std::endl;
-            decltype(s) w(s.number + number);
+            Weight w(s.number + number);
             return w;
         }
 
         template <typename S>
         Weight operator-(S s)
         {
-            std::cout << s.number << std::endl;
-            decltype(s) newS(1000);
-            return newS;
+            Weight w(number - s.number);
+            return w;
         }
 
         template <typename S>
@@ -47,7 +45,7 @@ namespace usu
         template <typename S>
         Weight operator*(S s)
         {
-            decltype(s) newS(s * number);
+            Weight newS(s * number);
             return newS;
         }
 
@@ -97,16 +95,7 @@ namespace usu
     template <typename ToWeight, typename W>
     ToWeight weight_cast(W w)
     {
-        // multiplier
         ToWeight t;
-
-        std::cout << "from " << w.weightRatio.num << ":" << w.weightRatio.den << " to " << t.weightRatio.num << ":" << t.weightRatio.den << std::endl;
-        std::cout << "in-top: " << w.weightRatio.num << std::endl;
-        std::cout << "in-bottom: " << w.weightRatio.den << std::endl;
-        std::cout << "out-top: " << t.weightRatio.num << std::endl;
-        std::cout << "out-bottom: " << t.weightRatio.den << std::endl
-                  << std::endl;
-
         ToWeight newWeight(w.number * w.weightRatio.num * t.weightRatio.den / (w.weightRatio.den * t.weightRatio.num));
         return newWeight;
     }
@@ -123,8 +112,8 @@ namespace usu
 template <typename S>
 S operator*(double i, const S& s)
 {
-    std::cout << i << std::endl;
-    return s;
+    S w(s.number * i);
+    return w;
 }
 
 template <typename S>
