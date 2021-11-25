@@ -62,8 +62,6 @@ namespace usu
         {
             auto nrhs = weight_cast<Weight<double, std::ratio<1, 1>>>(rhs);
             auto newThis = weight_cast<Weight<double, std::ratio<1, 1>>>(*this);
-            //std::cout << "nrhs: " << nrhs.number << std::endl;
-            //std::cout << "newThis: " << newThis.number << std::endl;
 
             return std::abs(nrhs.number - newThis.number) < 0.00001;
         }
@@ -71,29 +69,37 @@ namespace usu
         template <typename S>
         bool operator<=(S s)
         {
-            std::cout << s.number << std::endl;
-            return true;
+            auto nrhs = weight_cast<Weight<double, std::ratio<1, 1>>>(s);
+            auto newThis = weight_cast<Weight<double, std::ratio<1, 1>>>(*this);
+
+            return nrhs.number - newThis.number > -1 * 0.0004;
         }
 
         template <typename S>
         bool operator<(S s)
         {
-            std::cout << s.number << std::endl;
-            return true;
+            auto nrhs = weight_cast<Weight<double, std::ratio<1, 1>>>(s);
+            auto newThis = weight_cast<Weight<double, std::ratio<1, 1>>>(*this);
+
+            return nrhs.number - newThis.number > 0.00001;
         }
 
         template <typename S>
         bool operator>=(S s)
         {
-            std::cout << s.number << std::endl;
-            return true;
+            auto nrhs = weight_cast<Weight<double, std::ratio<1, 1>>>(s);
+            auto newThis = weight_cast<Weight<double, std::ratio<1, 1>>>(*this);
+
+            return nrhs.number - newThis.number < 0.00001;
         }
 
         template <typename S>
         bool operator>(S s)
         {
-            std::cout << s.number << std::endl;
-            return true;
+            auto nrhs = weight_cast<Weight<double, std::ratio<1, 1>>>(s);
+            auto newThis = weight_cast<Weight<double, std::ratio<1, 1>>>(*this);
+
+            return nrhs.number - newThis.number < -1 * 0.00001;
         }
 
         template <typename S>
@@ -101,8 +107,6 @@ namespace usu
         {
             auto nrhs = weight_cast<Weight<double, std::ratio<1, 1>>>(s);
             auto newThis = weight_cast<Weight<double, std::ratio<1, 1>>>(*this);
-            //std::cout << "nrhs: " << nrhs.number << std::endl;
-            //std::cout << "newThis: " << newThis.number << std::endl;
 
             return std::abs(nrhs.number - newThis.number) > 0.00001;
         }
@@ -111,7 +115,8 @@ namespace usu
     using microgram = Weight<double, std::ratio<1, 1000000>>;
     using kilogram = Weight<double, std::ratio<1000, 1>>;
     using gram = Weight<double, std::ratio<1, 1>>;
-    using ton = Weight<double, std::ratio<100000000000, 110231>>;
+    using ton = Weight<double, std::ratio<100000000, 11>>;
+    // using ton = Weight<double, std::ratio<100000000000, 98421>>;
     using ounce = Weight<double, std::ratio<100000000000, 3527396195>>;
     using pound = Weight<double, std::ratio<10000000000, 22046226>>;
 

@@ -22,7 +22,7 @@ int main()
     // usu::gram result = g + lb + oz;
     // usu::pound result = g + lb oz;
 
-    //std::cout << std::fixed << std::setprecision(10);
+    std::cout << std::fixed << std::setprecision(10);
     std::cout << "--- From micrograms ---" << std::endl;
     std::cout << "micrograms : " << mcg.count() << std::endl;
     std::cout << "grams      : " << g.count() << std::endl;
@@ -50,7 +50,7 @@ int main()
         usu::pound a(1);
         usu::pound b(0.5);
         usu::pound c = a + b;
-        //std::cout << std::setprecision(2);
+        std::cout << std::setprecision(2);
         std::cout << "(pound + pound) : " << a.count() << " + " << b.count() << " = " << c.count();
         std::cout << " ==> grams: " << usu::weight_cast<usu::gram>(c).count() << std::endl;
     }
@@ -59,7 +59,7 @@ int main()
         usu::pound a(1);
         usu::pound b(0.5);
         usu::pound c = a - b;
-        //std::cout << std::setprecision(2);
+        std::cout << std::setprecision(2);
         std::cout << "(pound - pound) : " << a.count() << " - " << b.count() << " = " << c.count();
         std::cout << " ==> grams: " << usu::weight_cast<usu::gram>(c).count() << std::endl;
     }
@@ -68,7 +68,7 @@ int main()
         usu::pound a(1);
         usu::pound b = a * 2.2;
         usu::pound c = 3.2 * a;
-        //std::cout << std::setprecision(2);
+        std::cout << std::setprecision(2);
         std::cout << "(pound * scalar) : " << a.count() << " * 2.2 "
                   << " = " << b.count();
         std::cout << " ==> grams: " << usu::weight_cast<usu::gram>(b).count() << std::endl;
@@ -85,17 +85,16 @@ int main()
         usu::kilogram c(4);
         usu::kilogram d(1);
 
-        std::cout << std::setprecision(10);
         std::cout << a.count() << " oz == " << b.count() << " lb : " << ((a == b) ? "true" : "false") << std::endl;
         std::cout << a.count() << " oz == " << c.count() << " kg : " << ((a == c) ? "true" : "false") << std::endl;
         std::cout << c.count() << " kg == " << d.count() << " kg : " << ((c == d) ? "true" : "false") << std::endl;
-
-        // I'M THIS FAR ############################################################
 
         std::cout << std::endl;
         std::cout << a.count() << " oz != " << b.count() << " lb : " << ((a != b) ? "true" : "false") << std::endl;
         std::cout << a.count() << " oz != " << c.count() << " kg : " << ((a != c) ? "true" : "false") << std::endl;
         std::cout << c.count() << " kg != " << d.count() << " kg : " << ((c != d) ? "true" : "false") << std::endl;
+
+        // I'M THIS FAR ############################################################
 
         std::cout << std::endl;
         std::cout << a.count() << " oz < " << b.count() << " lb : " << ((a < b) ? "true" : "false") << std::endl;
