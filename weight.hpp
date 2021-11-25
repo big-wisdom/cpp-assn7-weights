@@ -99,8 +99,12 @@ namespace usu
         template <typename S>
         bool operator!=(S s)
         {
-            std::cout << s.number << std::endl;
-            return true;
+            auto nrhs = weight_cast<Weight<double, std::ratio<1, 1>>>(s);
+            auto newThis = weight_cast<Weight<double, std::ratio<1, 1>>>(*this);
+            //std::cout << "nrhs: " << nrhs.number << std::endl;
+            //std::cout << "newThis: " << newThis.number << std::endl;
+
+            return std::abs(nrhs.number - newThis.number) > 0.00001;
         }
     };
 

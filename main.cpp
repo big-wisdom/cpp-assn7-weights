@@ -77,7 +77,6 @@ int main()
         std::cout << " ==> grams: " << usu::weight_cast<usu::gram>(c).count() << std::endl;
     }
 
-
     std::cout << std::endl
               << "--- Logical Operator Overloading ---" << std::endl;
     {
