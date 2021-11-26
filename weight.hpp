@@ -121,10 +121,10 @@ namespace usu
     using microgram = weight<std::ratio<1, 1000000>, double>;
     using kilogram = weight<std::ratio<1000, 1>, double>;
     using gram = weight<std::ratio<1, 1>, double>;
-    using ton = weight<std::ratio<100000000, 11>, double>;
+    using ton = weight<std::ratio<90718474, 100>, double>;
     // using ton = weight<std::ratio<100000000000, 98421>, double>;
-    using ounce = weight<std::ratio<100000000000, 3527396195>, double>;
-    using pound = weight<std::ratio<10000000000, 22046226>, double>;
+    using ounce = weight<std::ratio<28349523125, 1000000000>, double>;
+    using pound = weight<std::ratio<45359237, 100000>, double>;
 
 } // namespace usu
 
