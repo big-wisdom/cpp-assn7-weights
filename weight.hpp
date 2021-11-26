@@ -122,7 +122,6 @@ namespace usu
     using kilogram = weight<std::ratio<1000, 1>, double>;
     using gram = weight<std::ratio<1, 1>, double>;
     using ton = weight<std::ratio<90718474, 100>, double>;
-    // using ton = weight<std::ratio<100000000000, 98421>, double>;
     using ounce = weight<std::ratio<28349523125, 1000000000>, double>;
     using pound = weight<std::ratio<45359237, 100000>, double>;
 
@@ -135,8 +134,11 @@ S operator*(double i, const S& s)
     return w;
 }
 
-template <typename S>
-bool operator==(S& i, const S& s)
-{
-    return true;
-}
+//template <typename S>
+//bool usu::operator==(S& i, const S& s)
+//{
+//    auto nrhs = usu::weight_cast<usu::weight<std::ratio<1, 1>, double>>(s);
+//    auto newThis = usu::weight_cast<usu::weight<std::ratio<1, 1>, double>>(i);
+//
+//    return std::abs(nrhs.number - newThis.number) < 0.00001;
+//}
