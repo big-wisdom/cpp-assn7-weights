@@ -10,8 +10,8 @@ project(${PROJECT_NAME} CXX)
 set(HEADER_FILES
     weight.hpp)
 
-#set(UNIT_TEST_FILES
-#    TestWordTree.cpp)
+set(UNIT_TEST_FILES
+    TestWeight.cpp)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Export compiler flags for YouCompleteMe
 
@@ -19,25 +19,25 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Export compiler flags for YouCompleteMe
 # This is the main target
 #
 add_executable(${PROJECT_NAME} ${HEADER_FILES} ${SOURCE_FILES} main.cpp)
-#add_executable(UnitTestRunner  ${HEADER_FILES} ${SOURCE_FILES} ${UNIT_TEST_FILES})
+add_executable(UnitTestRunner  ${HEADER_FILES} ${SOURCE_FILES} ${UNIT_TEST_FILES})
 
 #
 # We want the C++ 20 standard for our project
 #
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)
-#set_property(TARGET UnitTestRunner PROPERTY CXX_STANDARD 20)
+set_property(TARGET UnitTestRunner PROPERTY CXX_STANDARD 20)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     target_compile_options(${PROJECT_NAME} PRIVATE /W4 /permissive-)
-    # target_compile_options(UnitTestRunner PRIVATE /W4 /permissive-)
+    target_compile_options(UnitTestRunner PRIVATE /W4 /permissive-)
     # set_target_properties(UnitTestRunner PROPERTIES LINK_FLAGS "/STACK:100000000")
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic)
-    # target_compile_options(UnitTestRunner PRIVATE -Wall -Wextra -pedantic)
+    target_compile_options(UnitTestRunner PRIVATE -Wall -Wextra -pedantic)
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
     message("AppleClang Compiler")
     target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic)
-    # target_compile_options(UnitTestRunner PRIVATE -Wall -Wextra -pedantic)
+    target_compile_options(UnitTestRunner PRIVATE -Wall -Wextra -pedantic)
 endif()
 
 #
@@ -77,29 +77,29 @@ endif()
 #
 # Add GoogleTest
 #
-#configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
-#execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
-#    RESULT_VARIABLE result
-#    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download )
-#if(result)
-#    message(FATAL_ERROR "CMake step for googletest failed: ${result}")
-#endif()
-#execute_process(COMMAND ${CMAKE_COMMAND} --build .
-#    RESULT_VARIABLE result
-#    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download )
-#if(result)
-#    message(FATAL_ERROR "Build step for googletest failed: ${result}")
-#endif()
-#
+configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
+execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
+    RESULT_VARIABLE result
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download )
+if(result)
+    message(FATAL_ERROR "CMake step for googletest failed: ${result}")
+endif()
+execute_process(COMMAND ${CMAKE_COMMAND} --build .
+    RESULT_VARIABLE result
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download )
+if(result)
+    message(FATAL_ERROR "Build step for googletest failed: ${result}")
+endif()
+
 ## Prevent overriding the parent project's compiler/linker
 ## settings on Windows
-#set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-#
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
 ## Add googletest directly to our build. This defines
 ## the gtest and gtest_main targets.
-#add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
-#                 ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
-#                 EXCLUDE_FROM_ALL)
-#
-### Now simply link against gtest or gtest_main as needed. Eg
-#target_link_libraries(UnitTestRunner gtest_main)
+add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
+                 ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
+                 EXCLUDE_FROM_ALL)
+
+# Now simply link against gtest or gtest_main as needed. Eg
+target_link_libraries(UnitTestRunner gtest_main)
