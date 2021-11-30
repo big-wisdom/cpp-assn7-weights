@@ -1,5 +1,6 @@
 #include <cstdint>
 #include <iostream>
+#include <ratio>
 
 namespace usu
 {
