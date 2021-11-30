@@ -8,7 +8,7 @@ namespace usu
     ToWeight weight_cast(W w)
     {
         ToWeight t;
-        ToWeight newWeight(static_cast<double>(w.number) * w.weightRatio.num * t.weightRatio.den / (w.weightRatio.den * t.weightRatio.num));
+        ToWeight newWeight(static_cast<decltype(t.number)>(w.number) * w.weightRatio.num * t.weightRatio.den / (w.weightRatio.den * t.weightRatio.num));
         return newWeight;
     }
 
@@ -131,7 +131,7 @@ namespace usu
 template <typename S>
 S operator*(double i, const S& s)
 {
-    S w(s.number * i);
+    S w(static_cast<decltype(s.number)>(s.number * i));
     return w;
 }
 
